@@ -32,6 +32,7 @@ public abstract class JsonParser
     private final static int MAX_SHORT_I = (int) Short.MAX_VALUE;
 
     /**
+     * TODO: 内建支持的数字类型
      * Enumeration of possible "native" (optimal) types that can be
      * used for numbers.
      */
@@ -531,6 +532,7 @@ public abstract class JsonParser
     public boolean requiresCustomCodec() { return false;}
 
     /**
+     * 2.9提供了NIO的支持，默认是没有开启的
      * Method that can be called to determine if this parser instance
      * uses non-blocking ("asynchronous") input access for decoding or not.
      * Access mode is determined by earlier calls via {@link JsonFactory};
@@ -610,6 +612,7 @@ public abstract class JsonParser
      */
 
     /**
+     * TODO: 获取解析的当前上下文
      * Method that can be used to access current parsing context reader
      * is in. There are 3 different types: root, array and object contexts,
      * with slightly different available information. Contexts are
@@ -622,6 +625,7 @@ public abstract class JsonParser
     public abstract JsonStreamContext getParsingContext();
 
     /**
+     * TODO: 输入的第一个字符的位置
      * Method that return the <b>starting</b> location of the current
      * token; that is, position of the first character from input
      * that starts the current token.
@@ -629,6 +633,7 @@ public abstract class JsonParser
     public abstract JsonLocation getTokenLocation();
 
     /**
+     * TODO: 该方法返回最后处理的字符的位置(一般用于error的时候打日志)
      * Method that returns location of the last processed character;
      * usually for error reporting purposes.
      */
@@ -803,6 +808,7 @@ public abstract class JsonParser
      */
 
     /**
+     * TODO: 这是最主要的迭代方法，它将推进流来确定下一个令牌的类型(如果有的话)，若没有下一个就返回Null
      * Main iteration method, which will advance stream enough
      * to determine type of the next token, if any. If none
      * remaining (stream has no content other than possible
@@ -814,6 +820,7 @@ public abstract class JsonParser
     public abstract JsonToken nextToken() throws IOException;
 
     /**
+     * TODO: 迭代方法，获取下一个值的类型
      * Iteration method that will advance stream enough
      * to determine type of the next token that is a value type
      * (including JSON Array and Object start/end markers).
@@ -833,6 +840,7 @@ public abstract class JsonParser
     public abstract JsonToken nextValue() throws IOException;
 
     /**
+     * TODO: 调用nextToken, 然后判断这个token是否是JsonToken.FIELD_NAME类型
      * Method that fetches next token (as if calling {@link #nextToken}) and
      * verifies whether it is {@link JsonToken#FIELD_NAME} with specified name
      * and returns result of that comparison.

@@ -295,6 +295,7 @@ public class JsonFactory
      */
     
     /**
+     * 默认使用空构造即可
      * Default constructor used to create factory instances.
      * Creation of a factory instance is a light-weight operation,
      * but it is still a good idea to reuse limited number of
@@ -406,6 +407,7 @@ public class JsonFactory
     }
 
     /**
+     * 拷贝出一个实例
      * Method for constructing a new {@link JsonFactory} that has
      * the same settings as this instance, but is otherwise
      * independent (i.e. nothing is actually shared, symbol tables

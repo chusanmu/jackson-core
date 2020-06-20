@@ -6,6 +6,7 @@
 package com.fasterxml.jackson.core;
 
 /**
+ * TODO: 一个枚举类，枚举除了用于返回结果的一些token类型
  * Enumeration for basic token types used for returning results
  * of parsing JSON content.
  */
@@ -61,6 +62,8 @@ public enum JsonToken
     FIELD_NAME(null, JsonTokenId.ID_FIELD_NAME),
     
     /**
+     * 值的token类型
+     * 嵌入式的object, 表示raw object
      * Placeholder token returned when the input source has a concept
      * of embedded Object that are not accessible as usual structure
      * (of starting with {@link #START_OBJECT}, having values, ending with

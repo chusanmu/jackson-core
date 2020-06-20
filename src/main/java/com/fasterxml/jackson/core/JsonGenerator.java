@@ -253,6 +253,7 @@ public abstract class JsonGenerator
      */
 
     /**
+     * TODO: 用于漂亮格式的输出，便于人阅读，默认它是null，紧凑型输出
      * Object that handles pretty-printing (usually additional
      * white space to make results more human-readable) during
      * output. If null, no pretty-printing is done.
@@ -602,6 +603,7 @@ public abstract class JsonGenerator
     }
 
     /**
+     * 获取当前值
      * Helper method, usually equivalent to:
      *<code>
      *   getOutputContext().getCurrentValue();
@@ -620,6 +622,7 @@ public abstract class JsonGenerator
     }
 
     /**
+     * 获取当前值，只用于高级数据绑定功能
      * Helper method, usually equivalent to:
      *<code>
      *   getOutputContext().setCurrentValue(v);
