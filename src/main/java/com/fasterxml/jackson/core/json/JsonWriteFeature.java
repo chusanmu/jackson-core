@@ -3,6 +3,7 @@ package com.fasterxml.jackson.core.json;
 import com.fasterxml.jackson.core.*;
 
 /**
+ * 对应于JsonGenerator
  * Token writer features specific to JSON backend.
  *
  * @since 2.10
@@ -15,6 +16,7 @@ public enum JsonWriteFeature
     // // Quoting/ecsaping-related features
     
     /**
+     * TODO: 是否使用双引号包裹属性名
      * Feature that determines whether JSON Object field names are
      * quoted using double-quotes, as specified by JSON specification
      * or not. Ability to disable quoting was added to support use
@@ -27,6 +29,7 @@ public enum JsonWriteFeature
     QUOTE_FIELD_NAMES(true, JsonGenerator.Feature.QUOTE_FIELD_NAMES),
 
     /**
+     * TODO: 是否将NAN输出为字符串
      * Feature that determines whether "NaN" ("not a number", that is, not
      * real number) float/double values are output as JSON strings.
      * The values checked are Double.Nan,
@@ -42,6 +45,7 @@ public enum JsonWriteFeature
     WRITE_NAN_AS_STRINGS(true, JsonGenerator.Feature.QUOTE_NON_NUMERIC_NUMBERS),
 
     /**
+     * 是否将数字输出为字符串
      * Feature that forces all regular number values to be written as JSON Strings,
      * instead of as JSON Numbers.
      * Default state is 'false', meaning that Java numbers are to
@@ -61,6 +65,7 @@ public enum JsonWriteFeature
     WRITE_NUMBERS_AS_STRINGS(false, JsonGenerator.Feature.WRITE_NUMBERS_AS_STRINGS),
     
     /**
+     * TODO: 对于超过7位的ASCII码，是否采用转义输出
      * Feature that specifies that all characters beyond 7-bit ASCII
      * range (i.e. code points of 128 and above) need to be output
      * using format-specific escapes (for JSON, backslash escapes),

@@ -128,12 +128,17 @@ public class JsonFactory
          */
         private final boolean _defaultState;
 
+        /* ---------------- TODO:使用位计算 来进行高效计算 -------------- */
+
         /**
+         * 收集当前枚举类所有枚举属性的默认值
          * Method that calculates bit set (flags) of all features that
          * are enabled by default.
          */
         public static int collectDefaults() {
+            // TODO: 初始值为0
             int flags = 0;
+            // TODO: 拿到所有的枚举的属性值们，若默认值为true, 那就和flags进行或运算
             for (Feature f : values()) {
                 if (f.enabledByDefault()) { flags |= f.getMask(); }
             }
@@ -143,7 +148,21 @@ public class JsonFactory
         private Feature(boolean defaultState) { _defaultState = defaultState; }
         
         public boolean enabledByDefault() { return _defaultState; }
+
+        /**
+         * 判断当前枚举值状态是否真的开启了
+         * 比如
+         * 1. flags取值为6，它的二进制表述是110，也就是0110
+         * 2. 0110 中间两个是1，证明ordinal()序号为1和2的两个枚举值是被开启的，1.需注意 ordinal()序号是从0开始的
+         * @param flags
+         * @return
+         */
         public boolean enabledIn(int flags) { return (flags & getMask()) != 0; }
+
+        /**
+         *  使用的是枚举的序号作为偏移量来做的
+         * @return
+         */
         public int getMask() { return (1 << ordinal()); }
     }
 
@@ -158,7 +177,8 @@ public class JsonFactory
      * (and returned by {@link #getFormatName()}
      */
     public final static String FORMAT_NAME_JSON = "JSON";
-    
+
+    /* ---------------- 1.在类加载的时候就会把相关的Feature们的默认值都搜集起来，后面有应用 -------------- */
     /**
      * Bitfield (set of flags) of all factory features that are enabled by default.
      */
@@ -769,6 +789,8 @@ public class JsonFactory
     /**********************************************************
      */
 
+    /* ---------------- 定制改变对应特征的状态 -------------- */
+
     /**
      * Method for enabling or disabling specified generator feature
      * (check {@link JsonGenerator.Feature} for list of features)
@@ -782,6 +804,7 @@ public class JsonFactory
      * (check {@link JsonGenerator.Feature} for list of features)
      */
     public JsonFactory enable(JsonGenerator.Feature f) {
+        // TODO: 用掩码和默认值flags进行或运算
         _generatorFeatures |= f.getMask();
         return this;
     }
@@ -791,6 +814,7 @@ public class JsonFactory
      * (check {@link JsonGenerator.Feature} for list of features)
      */
     public JsonFactory disable(JsonGenerator.Feature f) {
+        // TODO: 禁用关闭，对掩码进行非运算后，所有位均为1了，除了本身那个位置成为了0，就是为了禁用本bit位嘛，然后再执行与运算后，掩码为0的位肯定为0，从而达到了效果了，而其他bit位可以保持不变
         _generatorFeatures &= ~f.getMask();
         return this;
     }

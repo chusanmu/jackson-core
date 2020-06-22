@@ -36,6 +36,7 @@ public abstract class JsonGenerator
         // // Low-level I/O / content features
 
         /**
+         * TODO: 是否自动关闭目标流，注意此处指的是自动关闭流，而jsonGenerator.close()这句话是不能少的
          * Feature that determines whether generator will automatically
          * close underlying output target that is NOT owned by the
          * generator.
@@ -51,6 +52,7 @@ public abstract class JsonGenerator
         AUTO_CLOSE_TARGET(true),
 
         /**
+         * TODO: 是否自动给START_ARRAY/ START_OBJECT闭合，对应的就是jsonGenerator.writeEndObject() 忘写其实是没关系的
          * Feature that determines what happens when the generator is
          * closed while there are still unmatched
          * {@link JsonToken#START_ARRAY} or {@link JsonToken#START_OBJECT}
@@ -63,6 +65,7 @@ public abstract class JsonGenerator
         AUTO_CLOSE_JSON_CONTENT(true),
 
         /**
+         * 是否将jsonGenerator的flush操作 传递给目标流
          * Feature that specifies that calls to {@link #flush} will cause
          * matching <code>flush()</code> to underlying {@link OutputStream}
          * or {@link Writer}; if disabled this will not be done.
@@ -156,6 +159,7 @@ public abstract class JsonGenerator
         WRITE_NUMBERS_AS_STRINGS(false),
 
         /**
+         * 对于BigDecimal类型是否采用BigDecimal#toPlainString()来写，而避免科学计数问题，默认是false
          * Feature that determines whether {@link java.math.BigDecimal} entries are
          * serialized using {@link java.math.BigDecimal#toPlainString()} to prevent
          * values to be written using scientific notation.
@@ -174,6 +178,7 @@ public abstract class JsonGenerator
         // // Schema/Validity support features
 
         /**
+         * TODO: 是否开启重复检查，若开启了发现出了重复就抛出异常JsonGenerationException, 就是不要写重复的属性名
          * Feature that determines whether {@link JsonGenerator} will explicitly
          * check that no duplicate JSON Object field names are written.
          * If enabled, generator will check all names within context and report

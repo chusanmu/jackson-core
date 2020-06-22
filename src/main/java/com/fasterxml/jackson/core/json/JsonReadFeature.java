@@ -3,6 +3,7 @@ package com.fasterxml.jackson.core.json;
 import com.fasterxml.jackson.core.*;
 
 /**
+ * 它用于读取jsonToken的时候
  * Token reader (parser) features specific to JSON backend.
  * Eventual replacement for JSON-specific {@link com.fasterxml.jackson.core.JsonParser.Feature}s.
  *
@@ -44,6 +45,7 @@ public enum JsonReadFeature
     // // // Support for non-standard data format constructs: quoting/escaping
 
     /**
+     * 是否允许属性名单引号包裹，默认是不允许的，因为这不是JSON规范
      * Feature that determines whether parser will allow use
      * of single quotes (apostrophe, character '\'') for
      * quoting Strings (names and String values). If so,
@@ -56,6 +58,7 @@ public enum JsonReadFeature
     ALLOW_SINGLE_QUOTES(false, JsonParser.Feature.ALLOW_SINGLE_QUOTES),
 
     /**
+     * TODO: 是否允许属性名不需要双引号包裹也行，默认是不允许的，必须要有双引号包裹，符合json规范
      * Feature that determines whether parser will allow use
      * of unquoted field names (which is allowed by Javascript,
      * but not by JSON specification).
@@ -67,6 +70,7 @@ public enum JsonReadFeature
     ALLOW_UNQUOTED_FIELD_NAMES(false, JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES),
 
     /**
+     * 是否允许出现未转义的制表符和换行符等
      * Feature that determines whether parser will allow
      * JSON Strings to contain unescaped control characters
      * (ASCII characters with value less than 32, including
@@ -81,6 +85,7 @@ public enum JsonReadFeature
     ALLOW_UNESCAPED_CONTROL_CHARS(false, JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS),
 
     /**
+     * 是否支持反斜杠的引用机制
      * Feature that can be enabled to accept quoting of all character
      * using backslash quoting mechanism: if not enabled, only characters
      * that are explicitly listed by JSON specification can be thus
@@ -95,6 +100,7 @@ public enum JsonReadFeature
     // // // Support for non-standard data format constructs: number representations
     
     /**
+     * TODO: 是否允许0开头的数字
      * Feature that determines whether parser will allow
      * JSON integral numbers to start with additional (ignorable) 
      * zeroes (like: 000001). If enabled, no exception is thrown, and extra
@@ -108,6 +114,7 @@ public enum JsonReadFeature
     ALLOW_LEADING_ZEROS_FOR_NUMBERS(false, JsonParser.Feature.ALLOW_NUMERIC_LEADING_ZEROS),
     
     /**
+     * TODO: 是否接受NAN作为一个number
      * Feature that allows parser to recognize set of
      * "Not-a-Number" (NaN) tokens as legal floating number
      * values (similar to how many other data formats and
@@ -131,6 +138,7 @@ public enum JsonReadFeature
     // // // Support for non-standard data format constructs: array/value separators
      
     /**
+     * TODO: 是否允许JSON数组中的缺失值，数组的两个,之前没有值
      * Feature allows the support for "missing" values in a JSON array: missing
      * value meaning sequence of two commas, without value in-between but only
      * optional white space.
@@ -148,6 +156,7 @@ public enum JsonReadFeature
     ALLOW_MISSING_VALUES(false, JsonParser.Feature.ALLOW_MISSING_VALUES),
 
     /**
+     * TODO: 是否允许最后一个多余的逗号
      * Feature that determines whether {@link JsonParser} will allow for a single trailing
      * comma following the final value (in an Array) or member (in an Object). These commas
      * will simply be ignored.
